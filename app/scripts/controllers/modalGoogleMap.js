@@ -15,11 +15,11 @@ angular.module('cafeApp')
     function (results, status) {
        if (status == google.maps.GeocoderStatus.OK) {
            console.log(results[0].geometry.location);
-          var mapDiv = document.getElementById("gmodalmaps");
-          var map = new google.maps.Map((mapDiv), {
+           var map = new google.maps.Map(document.getElementById('gmodalmaps'), {
                center: results[0].geometry.location,
                zoom: 16
            });
+
 
            var marker = new google.maps.Marker({
                position: results[0].geometry.location,
@@ -49,7 +49,8 @@ angular.module('cafeApp')
            ];
            map.setOptions({styles: styles});
            setTimeout(function () {
-             google.maps.event.trigger(map, 'resize')
+             google.maps.event.trigger(map, 'resize');
+             $scope.$apply();
            }, 100);
 
        }
@@ -64,8 +65,7 @@ angular.module('cafeApp')
   //  the button has the 'data-dismiss' attribute.
   $scope.close = function() {
  	  close({
-      name: $scope.name,
-      age: $scope.age
+      name: $scope.modalAdress
     }, 500); // close, but give 500ms for bootstrap to animate
   };
 
@@ -78,8 +78,7 @@ angular.module('cafeApp')
 
     //  Now call close, returning control to the caller.
     close({
-      name: $scope.name,
-      age: $scope.age
+      name: $scope.modalAdress
     }, 500); // close, but give 500ms for bootstrap to animate
   };
 

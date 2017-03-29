@@ -1,34 +1,43 @@
 <h1>{{detail.data.name}}</h1>
 <div>{{detail.data.category}}</div>
-<div class="star-ratings-css">
-  <div class="star-ratings-css-top" style="width: {{detail.data.rate}}%">
-    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-  </div>
-  <div class="star-ratings-css-bottom">
-    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-  </div>
-</div>
-<div>{{detail.data.address}}</div>
-<div>{{detail.data.station}}</div>
-<div>{{detail.data.time}}</div>
-<div>{{detail.data.price}}</div>
-<div><a herf="tel:detail.data.tel">{{detail.data.tel}}</a></div>
-<div><a herf="detail.data.web" target="_blank">{{detail.data.web}}</a></div>
-<div>
-  <ks-swiper-container loop="true" show-nav-buttons="true" pagination-clickable="false"
-                       override-parameters="{'pagination': '.swiper-pagination', 'paginationType':'bullets'}">
-    <ks-swiper-slide class="swiper-slide" ng-repeat="image in detail.data.images track by $index"
-                     index="$index">
-      <a href="" ui-turn-on="modalSlide">
-        <img ng-src="{{image}}">
-      </a>
-    </ks-swiper-slide>
+<section class="section-images" id="images">
+  <div>
+    <ks-swiper-container loop="true" show-nav-buttons="true" pagination-clickable="false"
+                         override-parameters="{'pagination': '.swiper-pagination', 'paginationType':'bullets'}">
+      <ks-swiper-slide class="swiper-slide" ng-repeat="image in detail.data.images track by $index"
+                       index="$index">
+        <a href="" ui-turn-on="modalSlide">
+          <img ng-src="{{image}}">
+        </a>
+      </ks-swiper-slide>
 
-  </ks-swiper-container>
-</div>
-<!--a href="" class="btn btn-default btn-lg " ng-click="detail.showComplex()">Show Complex</a-->
-<div map-view map-address="detail.data.address" ng-bind="detail.data.address">{{detail.data.address}}</div>
-<div ng-repeat="comment in detail.data.comments">
-  <div>{{comment.name}}</div>
-  <div>{{comment.content}}</div>
-</div>
+    </ks-swiper-container>
+  </div>
+</section>
+<section class="section-information" id="information">
+
+  <div>{{detail.data.address}}</div>
+  <div>{{detail.data.station}}</div>
+  <div class="star-ratings-css">
+    <div class="star-ratings-css-top" style="width: {{detail.data.rate}}%">
+      <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+    </div>
+    <div class="star-ratings-css-bottom">
+      <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+    </div>
+  </div>
+  <div>{{detail.data.time}}</div>
+  <div>{{detail.data.price}}</div>
+  <div><a herf="tel:detail.data.tel">{{detail.data.tel}}</a></div>
+  <div><a herf="detail.data.web" target="_blank">{{detail.data.web}}</a></div>
+  <div map-view map-address="detail.data.address" ng-bind="detail.data.address">{{detail.data.address}}</div>
+</section>
+
+<section class="section-comments" id="comments">
+  <!--a href="" class="btn btn-default btn-lg " ng-click="detail.showComplex()">Show Complex</a-->
+  <div class="comment-header"></div>
+  <div ng-repeat="comment in detail.data.comments" class="comment">
+    <div>{{comment.name}}</div>
+    <div>{{comment.content}}</div>
+  </div>
+</section>
